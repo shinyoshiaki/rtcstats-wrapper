@@ -7,7 +7,7 @@ import { RTCStatsReferences } from "../shared/constatnts.js";
  * @extends BaseRTCStatsReport
  */
 export class ChromeRTCStatsReport extends BaseRTCStatsReport {
-  _getRTCStatsReference(stats) {
+  _getRTCStatsReference(stats: any) {
     switch (stats.type) {
       case "track":
         if (stats.remoteSource && stats.kind === "video") {

@@ -11,7 +11,7 @@ import {
  *
  * @private
  */
-function getTrackStatsOfFirefox(stats) {
+function getTrackStatsOfFirefox(stats: any) {
   switch (stats.type) {
     case "inbound-rtp":
       if (stats.kind === "video") {
@@ -38,7 +38,7 @@ function getTrackStatsOfFirefox(stats) {
  * @extends BaseRTCStatsReport
  */
 export class FirefoxRTCStatsReport extends BaseRTCStatsReport {
-  constructor(originalReport) {
+  constructor(originalReport: any) {
     super(originalReport);
 
     // retrieve receiver/sender stats
@@ -51,8 +51,10 @@ export class FirefoxRTCStatsReport extends BaseRTCStatsReport {
       const stats = {};
 
       // get the preferred value from original stats.
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       for (const attr of RTCStatsReferenceMap.get(ref)) {
         if (originalStats[attr] !== undefined) {
+          // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
           stats[attr] = originalStats[attr];
         }
       }

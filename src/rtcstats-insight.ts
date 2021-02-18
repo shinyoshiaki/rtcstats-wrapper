@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'enum... Remove this comment to see the full error message
 import Enum from "enum";
 import { RTCStatsMoment } from "../src/rtcstats-moment";
 import { EventEmitter } from "events";
@@ -112,7 +113,10 @@ const DEFAULT_THRESHOLDS = {
 };
 
 class ConnectionStatus {
-  constructor(options) {
+  _level: any;
+  _options: any;
+  _store: any;
+  constructor(options: any) {
     options = options || {};
     this._options = {
       failCount: 3,
@@ -127,7 +131,7 @@ class ConnectionStatus {
   }
 
   get level() {
-    if (this._store.critical.some(x => x === null)) {
+    if (this._store.critical.some((x: any) => x === null)) {
       return StatusLevels.unknown.key;
     }
 
@@ -144,7 +148,7 @@ class ConnectionStatus {
     return StatusLevels.stable.key;
   }
 
-  check(value, threshold) {
+  check(value: any, threshold: any) {
     this._store.critical.unshift(value > threshold.critical);
     this._store.critical.pop();
     this._store.unstable.unshift(value > threshold.unstable);
@@ -190,6 +194,12 @@ class ConnectionStatus {
  * insight.watch()
  */
 export class RTCStatsInsight extends EventEmitter {
+  _interval: any;
+  _intervalID: any;
+  _moment: any;
+  _statsSrc: any;
+  _status: any;
+  _thresholds: any;
   /**
    * Create a RTCStatsInsight.
    *
@@ -200,7 +210,7 @@ export class RTCStatsInsight extends EventEmitter {
    * @param {Thresholds} options.thresholds - A set of thresholds for emitting each events.
    * @param {Object} options.triggerCondition - The trigger condition which defines how much failures makes this to fire an event. `${triggerCondition.failCount}` failures within `${triggerCondition.within}` attemption causes trigger of events.
    */
-  constructor(statsSrc, options) {
+  constructor(statsSrc: any, options: any) {
     super();
 
     options = options || {};
@@ -209,7 +219,7 @@ export class RTCStatsInsight extends EventEmitter {
     this._thresholds = { ...DEFAULT_THRESHOLDS, ...options.thresholds };
     this._moment = new RTCStatsMoment();
     this._status = RTCStatsInsightEvents.enums.reduce(
-      (acc, cur) =>
+      (acc: any, cur: any) =>
         Object.assign(acc, {
           [cur]: new ConnectionStatus(options.triggerCondition)
         }),
@@ -342,7 +352,7 @@ export class RTCStatsInsight extends EventEmitter {
   get status() {
     return this._status;
   }
-  _checkStatus(moment) {
+  _checkStatus(moment: any) {
     const metrics = [
       { direction: "send", kind: "audio", key: "rtt" },
       { direction: "send", kind: "video", key: "rtt" },
@@ -359,7 +369,8 @@ export class RTCStatsInsight extends EventEmitter {
       const stats =
         direction === "candidatePair"
           ? moment[direction]
-          : moment[direction][kind];
+          : // @ts-expect-error ts-migrate(2538) FIXME: Type 'undefined' cannot be used as an index type.
+            moment[direction][kind];
       const eventKey = direction === "candidatePair" ? key : `${kind}-${key}`;
 
       if (stats.hasOwnProperty(key)) {

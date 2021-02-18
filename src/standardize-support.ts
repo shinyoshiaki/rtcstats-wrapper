@@ -5,8 +5,9 @@ import { SafariRTCStatsReport } from "./standardizers/safari.js";
 import { BaseRTCStatsReport } from "./standardizers/base.js";
 
 export function getStandardizer() {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'name' does not exist on type 'BrowserInf... Remove this comment to see the full error message
   const { name, version } = detect();
-  const [major, minor, patch] = version.split(".").map(n => parseInt(n));
+  const [major, minor, patch] = version.split(".").map((n: any) => parseInt(n));
   const browser = { name, major, minor, patch };
 
   switch (browser.name) {
@@ -37,7 +38,7 @@ export function getStandardizer() {
  * const receiverStats = report.get(RTCStatsReferences.RTCVideoReceivers.key);
  * const framesDecoded = receiverStats[0].framesDecoded;
  */
-export function standardizeReport(report) {
+export function standardizeReport(report: any) {
   const standardizer = getStandardizer();
   return new standardizer(report);
 }

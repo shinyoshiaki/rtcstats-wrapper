@@ -25,13 +25,14 @@ import {
  * }
  */
 export class BaseRTCStatsReport {
+  _report: any;
   /**
    * Create a BaseRTCStatsReport.
    *
    * @constructs
    * @param {RTCStatsReport} originalReport - original stats report from `(pc|sender|receiver).getStats()`.
    */
-  constructor(originalReport) {
+  constructor(originalReport: any) {
     const report = new Map();
 
     for (const originalStats of originalReport.values()) {
@@ -39,8 +40,10 @@ export class BaseRTCStatsReport {
       const stats = {};
 
       // get the preferred value from original stats.
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       for (const attr of RTCStatsReferenceMap.get(ref)) {
         if (originalStats[attr] !== undefined) {
+          // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
           stats[attr] = originalStats[attr];
         }
       }
@@ -72,7 +75,7 @@ export class BaseRTCStatsReport {
    * )[0];
    * logger.info(`ts:${stats.timestamp} id:${stats.trackId} recv:${stats.bytesReceived}`);
    */
-  get(key) {
+  get(key: any) {
     return this._report.get(key);
   }
 
@@ -90,11 +93,11 @@ export class BaseRTCStatsReport {
    *   logger.info("no video streams receiving.");
    * }
    */
-  has(key) {
+  has(key: any) {
     return this._report.has(key);
   }
 
-  _getRTCStatsReference(stats) {
+  _getRTCStatsReference(stats: any) {
     switch (stats.type) {
       case "codec":
         return RTCStatsReferences.RTCCodecs.key;
