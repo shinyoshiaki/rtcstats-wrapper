@@ -1,4 +1,4 @@
-import { BaseRTCStatsReport } from "./standardizers/base.js";
+import { BaseRTCStatsReport } from "./standardizers/base";
 export declare function getStandardizer(): typeof BaseRTCStatsReport;
 /**
  * A function that ditects the browser and returns an instance of this library's

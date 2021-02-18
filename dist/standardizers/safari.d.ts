@@ -1,4 +1,4 @@
-import { BaseRTCStatsReport } from "./base.js";
+import { BaseRTCStatsReport } from "./base";
 /**
  * Wrapped RTCStatsReport class for Safari.
  *

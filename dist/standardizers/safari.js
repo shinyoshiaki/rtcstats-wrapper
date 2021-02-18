@@ -14,8 +14,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SafariRTCStatsReport = void 0;
-var base_js_1 = require("./base.js");
-var constatnts_js_1 = require("../shared/constatnts.js");
+var base_1 = require("./base");
+var constatnts_1 = require("../shared/constatnts");
 /**
  * Wrapped RTCStatsReport class for Safari.
  *
@@ -30,37 +30,37 @@ var SafariRTCStatsReport = /** @class */ (function (_super) {
         switch (stats.type) {
             case "track":
                 if (stats.remoteSource && stats.hasOwnProperty("frameHeight")) {
-                    return constatnts_js_1.RTCStatsReferences.RTCVideoReceivers.key;
+                    return constatnts_1.RTCStatsReferences.RTCVideoReceivers.key;
                 }
                 else if (stats.remoteSource && stats.hasOwnProperty("audioLevel")) {
-                    return constatnts_js_1.RTCStatsReferences.RTCAudioReceivers.key;
+                    return constatnts_1.RTCStatsReferences.RTCAudioReceivers.key;
                 }
                 else if (stats.hasOwnProperty("frameHeight")) {
-                    return constatnts_js_1.RTCStatsReferences.RTCVideoSenders.key;
+                    return constatnts_1.RTCStatsReferences.RTCVideoSenders.key;
                 }
                 else if (stats.hasOwnProperty("audioLevel")) {
-                    return constatnts_js_1.RTCStatsReferences.RTCAudioSenders.key;
+                    return constatnts_1.RTCStatsReferences.RTCAudioSenders.key;
                 }
                 break;
             case "inbound-rtp":
                 if (stats.mediaType === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key;
                 }
                 else if (stats.mediaType === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key;
                 }
                 break;
             case "outbound-rtp":
                 if (stats.mediaType === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key;
                 }
                 else if (stats.mediaType === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key;
                 }
                 break;
         }
         return _super.prototype._getRTCStatsReference.call(this, stats);
     };
     return SafariRTCStatsReport;
-}(base_js_1.BaseRTCStatsReport));
+}(base_1.BaseRTCStatsReport));
 exports.SafariRTCStatsReport = SafariRTCStatsReport;

@@ -1,8 +1,5 @@
-import { BaseRTCStatsReport } from "./base.js";
-import {
-  RTCStatsReferences,
-  RTCStatsReferenceMap
-} from "../shared/constatnts.js";
+import { BaseRTCStatsReport } from "./base";
+import { RTCStatsReferences, RTCStatsReferenceMap } from "../shared/constatnts";
 
 /**
  * Get "<in|out>bound-rtp" stats since Firefox under v69 does not use stats-type
@@ -43,7 +40,7 @@ export class FirefoxRTCStatsReport extends BaseRTCStatsReport {
 
     // retrieve receiver/sender stats
     const statsRefs = [...originalReport.keys()];
-    const rtpRefs = statsRefs.filter(ref => /(in|out)bound_rtp_.*/.test(ref));
+    const rtpRefs = statsRefs.filter((ref) => /(in|out)bound_rtp_.*/.test(ref));
 
     for (const originalRef of rtpRefs) {
       const originalStats = originalReport.get(originalRef);

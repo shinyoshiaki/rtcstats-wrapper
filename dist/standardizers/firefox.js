@@ -21,8 +21,8 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FirefoxRTCStatsReport = void 0;
-var base_js_1 = require("./base.js");
-var constatnts_js_1 = require("../shared/constatnts.js");
+var base_1 = require("./base");
+var constatnts_1 = require("../shared/constatnts");
 /**
  * Get "<in|out>bound-rtp" stats since Firefox under v69 does not use stats-type
  * "track" but "<in|out>bound-rtp" stats includes the values that can be
@@ -34,18 +34,18 @@ function getTrackStatsOfFirefox(stats) {
     switch (stats.type) {
         case "inbound-rtp":
             if (stats.kind === "video") {
-                return constatnts_js_1.RTCStatsReferences.RTCVideoReceivers.key;
+                return constatnts_1.RTCStatsReferences.RTCVideoReceivers.key;
             }
             else if (stats.kind === "audio") {
-                return constatnts_js_1.RTCStatsReferences.RTCAudioReceivers.key;
+                return constatnts_1.RTCStatsReferences.RTCAudioReceivers.key;
             }
             break;
         case "outbound-rtp":
             if (stats.kind === "video") {
-                return constatnts_js_1.RTCStatsReferences.RTCVideoSenders.key;
+                return constatnts_1.RTCStatsReferences.RTCVideoSenders.key;
             }
             else if (stats.kind === "audio") {
-                return constatnts_js_1.RTCStatsReferences.RTCAudioSenders.key;
+                return constatnts_1.RTCStatsReferences.RTCAudioSenders.key;
             }
             break;
         default:
@@ -71,7 +71,7 @@ var FirefoxRTCStatsReport = /** @class */ (function (_super) {
             var stats = {};
             // get the preferred value from original stats.
             // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-            for (var _a = 0, _b = constatnts_js_1.RTCStatsReferenceMap.get(ref); _a < _b.length; _a++) {
+            for (var _a = 0, _b = constatnts_1.RTCStatsReferenceMap.get(ref); _a < _b.length; _a++) {
                 var attr = _b[_a];
                 if (originalStats[attr] !== undefined) {
                     // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
@@ -91,5 +91,5 @@ var FirefoxRTCStatsReport = /** @class */ (function (_super) {
         return _this;
     }
     return FirefoxRTCStatsReport;
-}(base_js_1.BaseRTCStatsReport));
+}(base_1.BaseRTCStatsReport));
 exports.FirefoxRTCStatsReport = FirefoxRTCStatsReport;

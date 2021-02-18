@@ -14,8 +14,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChromeRTCStatsReport = void 0;
-var base_js_1 = require("./base.js");
-var constatnts_js_1 = require("../shared/constatnts.js");
+var base_1 = require("./base");
+var constatnts_1 = require("../shared/constatnts");
 /**
  * Wrapped RTCStatsReport class for Google Chrome.
  *
@@ -30,20 +30,20 @@ var ChromeRTCStatsReport = /** @class */ (function (_super) {
         switch (stats.type) {
             case "track":
                 if (stats.remoteSource && stats.kind === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCVideoReceivers.key;
+                    return constatnts_1.RTCStatsReferences.RTCVideoReceivers.key;
                 }
                 else if (stats.remoteSource && stats.kind === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCAudioReceivers.key;
+                    return constatnts_1.RTCStatsReferences.RTCAudioReceivers.key;
                 }
                 else if (stats.kind === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCVideoSenders.key;
+                    return constatnts_1.RTCStatsReferences.RTCVideoSenders.key;
                 }
                 else if (stats.kind === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCAudioSenders.key;
+                    return constatnts_1.RTCStatsReferences.RTCAudioSenders.key;
                 }
         }
         return _super.prototype._getRTCStatsReference.call(this, stats);
     };
     return ChromeRTCStatsReport;
-}(base_js_1.BaseRTCStatsReport));
+}(base_1.BaseRTCStatsReport));
 exports.ChromeRTCStatsReport = ChromeRTCStatsReport;

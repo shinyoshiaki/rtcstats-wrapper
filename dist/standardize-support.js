@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.standardizeReport = exports.getStandardizer = void 0;
 var detect_browser_1 = require("detect-browser");
-var chrome_js_1 = require("./standardizers/chrome.js");
-var firefox_js_1 = require("./standardizers/firefox.js");
-var safari_js_1 = require("./standardizers/safari.js");
-var base_js_1 = require("./standardizers/base.js");
+var chrome_1 = require("./standardizers/chrome");
+var firefox_1 = require("./standardizers/firefox");
+var safari_1 = require("./standardizers/safari");
+var base_1 = require("./standardizers/base");
 function getStandardizer() {
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'name' does not exist on type 'BrowserInf... Remove this comment to see the full error message
     var _a = detect_browser_1.detect(), name = _a.name, version = _a.version;
@@ -13,13 +13,13 @@ function getStandardizer() {
     var browser = { name: name, major: major, minor: minor, patch: patch };
     switch (browser.name) {
         case "chrome":
-            return chrome_js_1.ChromeRTCStatsReport;
+            return chrome_1.ChromeRTCStatsReport;
         case "firefox":
-            return firefox_js_1.FirefoxRTCStatsReport;
+            return firefox_1.FirefoxRTCStatsReport;
         case "safari":
-            return safari_js_1.SafariRTCStatsReport;
+            return safari_1.SafariRTCStatsReport;
         default:
-            return base_js_1.BaseRTCStatsReport;
+            return base_1.BaseRTCStatsReport;
     }
 }
 exports.getStandardizer = getStandardizer;

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseRTCStatsReport = void 0;
-var constatnts_js_1 = require("../shared/constatnts.js");
+var constatnts_1 = require("../shared/constatnts");
 /**
  * Base class of browser-independent RTCStatsReport.
  * This class provides to get an array of specific type of RTCStats with {@link RTCStatsReferences}.
@@ -38,7 +38,7 @@ var BaseRTCStatsReport = /** @class */ (function () {
             var stats = {};
             // get the preferred value from original stats.
             // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-            for (var _b = 0, _c = constatnts_js_1.RTCStatsReferenceMap.get(ref); _b < _c.length; _b++) {
+            for (var _b = 0, _c = constatnts_1.RTCStatsReferenceMap.get(ref); _b < _c.length; _b++) {
                 var attr = _c[_b];
                 if (originalStats[attr] !== undefined) {
                     // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
@@ -94,83 +94,83 @@ var BaseRTCStatsReport = /** @class */ (function () {
     BaseRTCStatsReport.prototype._getRTCStatsReference = function (stats) {
         switch (stats.type) {
             case "codec":
-                return constatnts_js_1.RTCStatsReferences.RTCCodecs.key;
+                return constatnts_1.RTCStatsReferences.RTCCodecs.key;
             case "inbound-rtp":
                 if (stats.kind === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key;
                 }
                 else if (stats.kind === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key;
                 }
                 break;
             case "outbound-rtp":
                 if (stats.kind === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key;
                 }
                 else if (stats.kind === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key;
                 }
                 break;
             case "remote-inbound-rtp":
                 if (stats.kind === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCRemoteInboundRtpVideoStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCRemoteInboundRtpVideoStreams.key;
                 }
                 else if (stats.kind === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCRemoteInboundRtpAudioStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCRemoteInboundRtpAudioStreams.key;
                 }
                 break;
             case "remote-outbound-rtp":
                 if (stats.kind === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCRemoteOutboundRtpVideoStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCRemoteOutboundRtpVideoStreams.key;
                 }
                 else if (stats.kind === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCRemoteOutboundRtpAudioStreams.key;
+                    return constatnts_1.RTCStatsReferences.RTCRemoteOutboundRtpAudioStreams.key;
                 }
                 break;
             case "media-source":
                 if (stats.kind === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCVideoSources.key;
+                    return constatnts_1.RTCStatsReferences.RTCVideoSources.key;
                 }
                 else if (stats.kind === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCAudioSources.key;
+                    return constatnts_1.RTCStatsReferences.RTCAudioSources.key;
                 }
                 break;
             case "csrc":
-                return constatnts_js_1.RTCStatsReferences.RTCRtpContributingSources.key;
+                return constatnts_1.RTCStatsReferences.RTCRtpContributingSources.key;
             case "peer-connection":
-                return constatnts_js_1.RTCStatsReferences.RTCPeerConnection.key;
+                return constatnts_1.RTCStatsReferences.RTCPeerConnection.key;
             case "data-channel":
-                return constatnts_js_1.RTCStatsReferences.RTCDataChannels.key;
+                return constatnts_1.RTCStatsReferences.RTCDataChannels.key;
             case "stream":
-                return constatnts_js_1.RTCStatsReferences.RTCMediaStreams.key;
+                return constatnts_1.RTCStatsReferences.RTCMediaStreams.key;
             case "sender":
                 if (stats.kind === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCVideoSenders.key;
+                    return constatnts_1.RTCStatsReferences.RTCVideoSenders.key;
                 }
                 else if (stats.kind === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCAudioSenders.key;
+                    return constatnts_1.RTCStatsReferences.RTCAudioSenders.key;
                 }
                 break;
             case "receiver":
                 if (stats.kind === "video") {
-                    return constatnts_js_1.RTCStatsReferences.RTCVideoReceivers.key;
+                    return constatnts_1.RTCStatsReferences.RTCVideoReceivers.key;
                 }
                 else if (stats.kind === "audio") {
-                    return constatnts_js_1.RTCStatsReferences.RTCAudioReceivers.key;
+                    return constatnts_1.RTCStatsReferences.RTCAudioReceivers.key;
                 }
                 break;
             case "transport":
-                return constatnts_js_1.RTCStatsReferences.RTCTransports.key;
+                return constatnts_1.RTCStatsReferences.RTCTransports.key;
             case "candidate-pair":
-                return constatnts_js_1.RTCStatsReferences.RTCIceCandidatePairs.key;
+                return constatnts_1.RTCStatsReferences.RTCIceCandidatePairs.key;
             case "local-candidate":
-                return constatnts_js_1.RTCStatsReferences.RTCLocalIceCandidates.key;
+                return constatnts_1.RTCStatsReferences.RTCLocalIceCandidates.key;
             case "remote-candidate":
-                return constatnts_js_1.RTCStatsReferences.RTCRemoteIceCandidates.key;
+                return constatnts_1.RTCStatsReferences.RTCRemoteIceCandidates.key;
             case "certificate":
-                return constatnts_js_1.RTCStatsReferences.RTCCertificates.key;
+                return constatnts_1.RTCStatsReferences.RTCCertificates.key;
             case "stunserverconnection":
-                return constatnts_js_1.RTCStatsReferences.RTCStunServerConnections.key;
+                return constatnts_1.RTCStatsReferences.RTCStunServerConnections.key;
             default:
                 throw new Error("Received an unknown stats-type string: " + stats.type + ".");
         }

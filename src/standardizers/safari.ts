@@ -1,5 +1,5 @@
-import { BaseRTCStatsReport } from "./base.js";
-import { RTCStatsReferences } from "../shared/constatnts.js";
+import { BaseRTCStatsReport } from "./base";
+import { RTCStatsReferences } from "../shared/constatnts";
 
 /**
  * Wrapped RTCStatsReport class for Safari.

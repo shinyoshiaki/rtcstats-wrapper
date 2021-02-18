@@ -1,8 +1,8 @@
-export { ChromeRTCStatsReport } from "./standardizers/chrome.js";
-export { FirefoxRTCStatsReport } from "./standardizers/firefox.js";
-export { SafariRTCStatsReport } from "./standardizers/safari.js";
-export { BaseRTCStatsReport } from "./standardizers/base.js";
-export { RTCStatsReferences, RTCStatsReferenceMap } from "./shared/constatnts.js";
-export { RTCStatsMoment } from "./rtcstats-moment.js";
-export { RTCStatsInsight, RTCStatsInsightEvents, StatusLevels } from "./rtcstats-insight.js";
-export { standardizeReport } from "./standardize-support.js";
+export { ChromeRTCStatsReport } from "./standardizers/chrome";
+export { FirefoxRTCStatsReport } from "./standardizers/firefox";
+export { SafariRTCStatsReport } from "./standardizers/safari";
+export { BaseRTCStatsReport } from "./standardizers/base";
+export { RTCStatsReferences, RTCStatsReferenceMap } from "./shared/constatnts";
+export { RTCStatsMoment } from "./rtcstats-moment";
+export { RTCStatsInsight, RTCStatsInsightEvents, StatusLevels, } from "./rtcstats-insight";
+export { standardizeReport } from "./standardize-support";

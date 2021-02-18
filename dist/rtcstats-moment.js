@@ -1,22 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RTCStatsMoment = void 0;
-var standardize_support_js_1 = require("./standardize-support.js");
-var constatnts_js_1 = require("./shared/constatnts.js");
+var standardize_support_1 = require("./standardize-support");
+var constatnts_1 = require("./shared/constatnts");
 function getVideoSenderStats(last, prev) {
     var stats = {};
-    if (last.has(constatnts_js_1.RTCStatsReferences.RTCRemoteInboundRtpVideoStreams.key)) {
+    if (last.has(constatnts_1.RTCStatsReferences.RTCRemoteInboundRtpVideoStreams.key)) {
         // While we only support single-track stream, this method only care about 1 transceiver.
-        var RTCRemoteInboundRtpVideoStreamStats = last.get(constatnts_js_1.RTCStatsReferences.RTCRemoteInboundRtpVideoStreams.key)[0];
+        var RTCRemoteInboundRtpVideoStreamStats = last.get(constatnts_1.RTCStatsReferences.RTCRemoteInboundRtpVideoStreams.key)[0];
         stats.jitter = RTCRemoteInboundRtpVideoStreamStats.jitter;
         stats.rtt = RTCRemoteInboundRtpVideoStreamStats.roundTripTime;
     }
-    if (last.has(constatnts_js_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key) &&
-        prev.has(constatnts_js_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key)) {
+    if (last.has(constatnts_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key) &&
+        prev.has(constatnts_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key)) {
         // While we only support single-track stream, this method only care about 1 transceiver.
-        var RTCOutboundRtpVideoStreamStats = last.get(constatnts_js_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key)[0];
+        var RTCOutboundRtpVideoStreamStats = last.get(constatnts_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key)[0];
         var previous = {
-            RTCOutboundRtpVideoStreamStats: prev.get(constatnts_js_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key)[0]
+            RTCOutboundRtpVideoStreamStats: prev.get(constatnts_1.RTCStatsReferences.RTCOutboundRtpVideoStreams.key)[0],
         };
         // calculate averageEncodeTime
         if (RTCOutboundRtpVideoStreamStats.totalEncodeTime !== null &&
@@ -51,23 +51,23 @@ function getVideoSenderStats(last, prev) {
 }
 function getAudioSenderStats(last, prev) {
     var stats = {};
-    if (last.has(constatnts_js_1.RTCStatsReferences.RTCAudioSenders.key)) {
+    if (last.has(constatnts_1.RTCStatsReferences.RTCAudioSenders.key)) {
         // While we only support single-track stream, this method only care about 1 transceiver.
-        var RTCAudioSenderStats = last.get(constatnts_js_1.RTCStatsReferences.RTCAudioSenders.key)[0];
+        var RTCAudioSenderStats = last.get(constatnts_1.RTCStatsReferences.RTCAudioSenders.key)[0];
         stats.audioLevel = RTCAudioSenderStats.audioLevel;
     }
-    if (last.has(constatnts_js_1.RTCStatsReferences.RTCRemoteInboundRtpAudioStreams.key)) {
+    if (last.has(constatnts_1.RTCStatsReferences.RTCRemoteInboundRtpAudioStreams.key)) {
         // While we only support single-track stream, this method only care about 1 transceiver.
-        var RTCRemoteInboundRtpAudioStreamStats = last.get(constatnts_js_1.RTCStatsReferences.RTCRemoteInboundRtpAudioStreams.key)[0];
+        var RTCRemoteInboundRtpAudioStreamStats = last.get(constatnts_1.RTCStatsReferences.RTCRemoteInboundRtpAudioStreams.key)[0];
         stats.jitter = RTCRemoteInboundRtpAudioStreamStats.jitter;
         stats.rtt = RTCRemoteInboundRtpAudioStreamStats.roundTripTime;
     }
-    if (last.has(constatnts_js_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key) &&
-        prev.has(constatnts_js_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key)) {
+    if (last.has(constatnts_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key) &&
+        prev.has(constatnts_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key)) {
         // While we only support single-track stream, this method only care about 1 transceiver.
-        var RTCOutboundRtpAudioStreamStats = last.get(constatnts_js_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key)[0];
+        var RTCOutboundRtpAudioStreamStats = last.get(constatnts_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key)[0];
         var previous = {
-            RTCOutboundRtpAudioStreamStats: prev.get(constatnts_js_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key)[0]
+            RTCOutboundRtpAudioStreamStats: prev.get(constatnts_1.RTCStatsReferences.RTCOutboundRtpAudioStreams.key)[0],
         };
         // calculate bitrate with previous value
         if (RTCOutboundRtpAudioStreamStats.bytesSent !== null) {
@@ -84,13 +84,13 @@ function getAudioSenderStats(last, prev) {
 }
 function getVideoReceiverStats(last, prev) {
     var stats = {};
-    if (last.has(constatnts_js_1.RTCStatsReferences.RTCVideoReceivers.key) &&
-        prev.has(constatnts_js_1.RTCStatsReferences.RTCVideoReceivers.key)) {
+    if (last.has(constatnts_1.RTCStatsReferences.RTCVideoReceivers.key) &&
+        prev.has(constatnts_1.RTCStatsReferences.RTCVideoReceivers.key)) {
         // While we only support single-track stream, this method only care about 1 transceiver.
-        var RTCVideoReceiverStats = last.get(constatnts_js_1.RTCStatsReferences.RTCVideoReceivers.key)[0];
-        if (prev.has(constatnts_js_1.RTCStatsReferences.RTCVideoReceivers.key)) {
+        var RTCVideoReceiverStats = last.get(constatnts_1.RTCStatsReferences.RTCVideoReceivers.key)[0];
+        if (prev.has(constatnts_1.RTCStatsReferences.RTCVideoReceivers.key)) {
             var previous = {
-                RTCVideoReceiverStats: prev.get(constatnts_js_1.RTCStatsReferences.RTCVideoReceivers.key)[0]
+                RTCVideoReceiverStats: prev.get(constatnts_1.RTCStatsReferences.RTCVideoReceivers.key)[0],
             };
             if (RTCVideoReceiverStats.jitterBufferDelay !== null &&
                 RTCVideoReceiverStats.jitterBufferEmittedCount !== null) {
@@ -98,13 +98,14 @@ function getVideoReceiverStats(last, prev) {
                     previous.RTCVideoReceiverStats.jitterBufferDelay;
                 var jBDEmittedDelta = RTCVideoReceiverStats.jitterBufferEmittedCount -
                     previous.RTCVideoReceiverStats.jitterBufferEmittedCount;
-                stats.jitterBufferDelay = jitterBufferDelayDelta / jBDEmittedDelta;
+                stats.jitterBufferDelay =
+                    jitterBufferDelayDelta / jBDEmittedDelta;
             }
         }
     }
-    if (last.has(constatnts_js_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key)) {
+    if (last.has(constatnts_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key)) {
         // While we only support single-track stream, this method only care about 1 transceiver.
-        var RTCInboundRtpVideoStreamStats = last.get(constatnts_js_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key)[0];
+        var RTCInboundRtpVideoStreamStats = last.get(constatnts_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key)[0];
         // calculate fractionLost
         if (RTCInboundRtpVideoStreamStats.packetsLost !== null &&
             RTCInboundRtpVideoStreamStats.packetsReceived !== null) {
@@ -112,9 +113,9 @@ function getVideoReceiverStats(last, prev) {
                 RTCInboundRtpVideoStreamStats.packetsLost /
                     RTCInboundRtpVideoStreamStats.packetsReceived;
         }
-        if (prev.has(constatnts_js_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key)) {
+        if (prev.has(constatnts_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key)) {
             var previous = {
-                RTCInboundRtpVideoStreamStats: prev.get(constatnts_js_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key)[0]
+                RTCInboundRtpVideoStreamStats: prev.get(constatnts_1.RTCStatsReferences.RTCInboundRtpVideoStreams.key)[0],
             };
             // calculate QP value
             if (RTCInboundRtpVideoStreamStats.qpSum !== null &&
@@ -141,16 +142,16 @@ function getVideoReceiverStats(last, prev) {
 }
 function getAudioReceiverStats(last, prev) {
     var stats = {};
-    if (last.has(constatnts_js_1.RTCStatsReferences.RTCAudioReceivers.key)) {
+    if (last.has(constatnts_1.RTCStatsReferences.RTCAudioReceivers.key)) {
         // While we only support single-track stream, this method only care about 1 transceiver.
-        var RTCAudioReceiverStats = last.get(constatnts_js_1.RTCStatsReferences.RTCAudioReceivers.key)[0];
+        var RTCAudioReceiverStats = last.get(constatnts_1.RTCStatsReferences.RTCAudioReceivers.key)[0];
         stats.audioLevel = RTCAudioReceiverStats.audioLevel;
-        if (prev.has(constatnts_js_1.RTCStatsReferences.RTCAudioReceivers.key)) {
+        if (prev.has(constatnts_1.RTCStatsReferences.RTCAudioReceivers.key)) {
             // While we only support single-track stream, this method only care about 1 transceiver.
-            var RTCAudioReceiverStats_1 = last.get(constatnts_js_1.RTCStatsReferences.RTCAudioReceivers.key)[0];
-            if (prev.has(constatnts_js_1.RTCStatsReferences.RTCAudioReceivers.key)) {
+            var RTCAudioReceiverStats_1 = last.get(constatnts_1.RTCStatsReferences.RTCAudioReceivers.key)[0];
+            if (prev.has(constatnts_1.RTCStatsReferences.RTCAudioReceivers.key)) {
                 var previous = {
-                    RTCAudioReceiverStats: prev.get(constatnts_js_1.RTCStatsReferences.RTCAudioReceivers.key)[0]
+                    RTCAudioReceiverStats: prev.get(constatnts_1.RTCStatsReferences.RTCAudioReceivers.key)[0],
                 };
                 if (RTCAudioReceiverStats_1.jitterBufferDelay !== null &&
                     RTCAudioReceiverStats_1.jitterBufferEmittedCount !== null) {
@@ -158,14 +159,15 @@ function getAudioReceiverStats(last, prev) {
                         previous.RTCAudioReceiverStats.jitterBufferDelay;
                     var jBDEmittedDelta = RTCAudioReceiverStats_1.jitterBufferEmittedCount -
                         previous.RTCAudioReceiverStats.jitterBufferEmittedCount;
-                    stats.jitterBufferDelay = jitterBufferDelayDelta / jBDEmittedDelta;
+                    stats.jitterBufferDelay =
+                        jitterBufferDelayDelta / jBDEmittedDelta;
                 }
             }
         }
     }
-    if (last.has(constatnts_js_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key)) {
+    if (last.has(constatnts_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key)) {
         // While we only support single-track stream, this method only care about 1 transceiver.
-        var RTCInboundRtpAudioStreamStats = last.get(constatnts_js_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key)[0];
+        var RTCInboundRtpAudioStreamStats = last.get(constatnts_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key)[0];
         // calculate fractionLost
         if (RTCInboundRtpAudioStreamStats.packetsLost !== null &&
             RTCInboundRtpAudioStreamStats.packetsReceived !== null) {
@@ -173,9 +175,9 @@ function getAudioReceiverStats(last, prev) {
                 RTCInboundRtpAudioStreamStats.packetsLost /
                     RTCInboundRtpAudioStreamStats.packetsReceived;
         }
-        if (prev.has(constatnts_js_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key)) {
+        if (prev.has(constatnts_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key)) {
             var previous = {
-                RTCInboundRtpAudioStreamStats: prev.get(constatnts_js_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key)[0]
+                RTCInboundRtpAudioStreamStats: prev.get(constatnts_1.RTCStatsReferences.RTCInboundRtpAudioStreams.key)[0],
             };
             // calculate bitrate with previous value
             if (RTCInboundRtpAudioStreamStats.bytesReceived !== null) {
@@ -193,24 +195,24 @@ function getAudioReceiverStats(last, prev) {
 }
 function getCandidatePairStats(last, prev) {
     var stats = {};
-    if (last.has(constatnts_js_1.RTCStatsReferences.RTCIceCandidatePairs.key) &&
+    if (last.has(constatnts_1.RTCStatsReferences.RTCIceCandidatePairs.key) &&
         last
-            .get(constatnts_js_1.RTCStatsReferences.RTCIceCandidatePairs.key)
+            .get(constatnts_1.RTCStatsReferences.RTCIceCandidatePairs.key)
             .some(function (stat) { return stat.nominated; })) {
         var RTCIceCandidatePairStats = last
-            .get(constatnts_js_1.RTCStatsReferences.RTCIceCandidatePairs.key)
+            .get(constatnts_1.RTCStatsReferences.RTCIceCandidatePairs.key)
             .find(function (stat) { return stat.nominated; });
         // assign rtt directly
         stats.rtt = RTCIceCandidatePairStats.currentRoundTripTime;
         // check if previous stats also has nominated candidate-pair
-        if (prev.has(constatnts_js_1.RTCStatsReferences.RTCIceCandidatePairs.key) &&
+        if (prev.has(constatnts_1.RTCStatsReferences.RTCIceCandidatePairs.key) &&
             prev
-                .get(constatnts_js_1.RTCStatsReferences.RTCIceCandidatePairs.key)
+                .get(constatnts_1.RTCStatsReferences.RTCIceCandidatePairs.key)
                 .some(function (stat) { return stat.nominated; })) {
             var previous = {
                 RTCIceCandidatePairStats: prev
-                    .get(constatnts_js_1.RTCStatsReferences.RTCIceCandidatePairs.key)
-                    .find(function (stat) { return stat.nominated; })
+                    .get(constatnts_1.RTCStatsReferences.RTCIceCandidatePairs.key)
+                    .find(function (stat) { return stat.nominated; }),
             };
             // calculate sending bitrate with previous value
             if (RTCIceCandidatePairStats.bytesSent !== null) {
@@ -325,10 +327,10 @@ var RTCStatsMoment = /** @class */ (function () {
      * @constructs
      */
     function RTCStatsMoment() {
-        this.standardizer = standardize_support_js_1.getStandardizer();
+        this.standardizer = standardize_support_1.getStandardizer();
         this._report = {
             prev: new Map(),
-            last: new Map()
+            last: new Map(),
         };
     }
     /**
@@ -374,13 +376,13 @@ var RTCStatsMoment = /** @class */ (function () {
         return {
             send: {
                 video: getVideoSenderStats(last, prev),
-                audio: getAudioSenderStats(last, prev)
+                audio: getAudioSenderStats(last, prev),
             },
             receive: {
                 video: getVideoReceiverStats(last, prev),
-                audio: getAudioReceiverStats(last, prev)
+                audio: getAudioReceiverStats(last, prev),
             },
-            candidatePair: getCandidatePairStats(last, prev)
+            candidatePair: getCandidatePairStats(last, prev),
         };
     };
     return RTCStatsMoment;

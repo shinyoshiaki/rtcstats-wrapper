@@ -1,7 +1,4 @@
-import {
-  RTCStatsReferences,
-  RTCStatsReferenceMap
-} from "../shared/constatnts.js";
+import { RTCStatsReferences, RTCStatsReferenceMap } from "../shared/constatnts";
 
 /**
  * Base class of browser-independent RTCStatsReport.
