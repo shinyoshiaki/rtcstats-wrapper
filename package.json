@@ -2,27 +2,32 @@
   "name": "rtcstats-wrapper",
   "version": "1.0.0",
   "description": "A wrapper of RTCStats for standardization and calculation of momentary values.",
-  "author": "NTT Communications Corp.",
-  "license": "MIT",
-  "homepage": "https://github.com/skyway-lab/rtcstats-wrapper#readme",
   "keywords": [
     "WebRTC",
     "RTCStats"
   ],
+  "homepage": "https://github.com/skyway-lab/rtcstats-wrapper#readme",
+  "bugs": {
+    "url": "https://github.com/skyway-lab/rtcstats-wrapper/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/skyway-lab/rtcstats-wrapper.git"
   },
-  "bugs": {
-    "url": "https://github.com/skyway-lab/rtcstats-wrapper/issues"
-  },
-  "main": "./dist/rtcstats-wrapper.js",
+  "license": "MIT",
+  "author": "NTT Communications Corp.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "lint": "eslint .",
-    "test": "jest",
+    "build": "rm -rf dist && tsc",
     "dev": "jest --watch",
-    "build": "rollup -c",
-    "docs": "jsdoc -c ./jsdoc.json"
+    "docs": "jsdoc -c ./jsdoc.json",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "detect-browser": "^4.5.1",
+    "enum": "^2.5.0"
   },
   "devDependencies": {
     "bl": ">=0.9.5",
@@ -38,10 +43,7 @@
     "rollup-jest": "0.0.2",
     "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-resolve": "^5.2.0"
-  },
-  "dependencies": {
-    "detect-browser": "^4.5.1",
-    "enum": "^2.5.0"
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "ts-migrate": "^0.1.15"
   }
 }
