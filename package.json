@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "detect-browser": "^4.5.1",
-    "enum": "^2.5.0"
+    "enum": "^3.0.4"
   },
   "devDependencies": {
     "bl": ">=0.9.5",
